@@ -15,10 +15,9 @@ export class ProductsService {
   async getAll({ latest, brand, featured, page }: IFilterProducts) {
     let products = [] as Product[];
     if (page) {
-      products = await this.productModel
-        .find()
-        .limit(9)
-        .skip(page * 9);
+      products = await this.productModel.find();
+      //.limit(9)
+      //.skip(page * 9);
       return products;
     } else if (latest) {
       products = await this.productModel
@@ -57,6 +56,8 @@ export class ProductsService {
     if (checkProduct) {
       return 'product have been exist already';
     }
+    const linkImg = (await uploadImage(product.img)).secure_url;
+    newProduct.img = linkImg;
 
     const savedProduct = await newProduct.save();
 

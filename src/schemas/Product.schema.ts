@@ -15,13 +15,13 @@ export class Product {
   price: number;
 
   @Prop()
-  desc: string;
+  description: string;
 
   @Prop()
   img: string;
 
   @Prop()
-  categories: string[];
+  categories: string;
 
   @Prop({
     type: [
@@ -33,7 +33,6 @@ export class Product {
         screen: String,
         battery: String,
         os: String,
-        color: [String],
         camera: String,
       },
     ],
@@ -46,12 +45,11 @@ export class Product {
     screen: string;
     battery: string;
     os: string;
-    color: string[];
     camera: string;
   };
 
   @Prop()
-  color: string;
+  color: string[];
 
   @Prop()
   instock: string;

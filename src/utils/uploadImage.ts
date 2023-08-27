@@ -1,10 +1,13 @@
 import { v2 as cloudinary } from 'cloudinary';
 
-const apiKey = process.env.CLOUDINARY_API_KEY;
-const apiSecret = process.env.CLOUDINARY_API_SECRET;
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
 
-cloudinary.config(apiKey, apiSecret);
-
-export function uploadImage() {
-  console.log(apiKey, apiSecret);
+export async function uploadImage(img: string) {
+  const result = await cloudinary.uploader.upload(img);
+  return result;
 }

@@ -9,9 +9,9 @@ export interface IProduct {
   name: string;
   price: number;
   description: string;
-  instock: boolean;
+  instock: string;
   img: string;
-  categories: string[];
+  categories: string;
   rating?: number;
   color: string[];
   brand: string;

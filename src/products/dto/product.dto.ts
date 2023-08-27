@@ -1,6 +1,5 @@
 import {
   IsArray,
-  IsBoolean,
   IsNotEmpty,
   IsNumber,
   IsString,
@@ -62,9 +61,9 @@ export class ProductDto {
   @IsNotEmpty()
   color: string[];
 
-  @IsBoolean()
+  @IsString()
   @IsNotEmpty()
-  instock: boolean;
+  instock: string;
 
   @IsNotEmpty()
   @IsNumber()
@@ -74,9 +73,9 @@ export class ProductDto {
   @IsNotEmpty()
   weight: string;
 
-  @IsArray()
+  @IsNotEmpty()
   @IsString()
-  categories: string[];
+  categories: string;
 
   @ValidateNested()
   configure: Configure;

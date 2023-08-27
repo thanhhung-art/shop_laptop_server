@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpException,
   HttpStatus,
   Post,
@@ -19,5 +20,12 @@ export class ProductsController {
     if (result === 'product have been exist already')
       throw new HttpException(result, HttpStatus.BAD_REQUEST);
     return dataReturn('add product success', result);
+  }
+
+  @Get()
+  async getProducts() {
+    const result = await this.productsService.getAll({ page: 1 });
+
+    return dataReturn('get product success', result);
   }
 }
