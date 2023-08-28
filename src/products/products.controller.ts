@@ -4,6 +4,7 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  Param,
   Post,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
@@ -25,6 +26,13 @@ export class ProductsController {
   @Get()
   async getProducts() {
     const result = await this.productsService.getAll({ page: 1 });
+
+    return dataReturn('get product success', result);
+  }
+
+  @Get(':id')
+  async getProduct(@Param('id') id: string) {
+    const result = await this.productsService.getById(id);
 
     return dataReturn('get product success', result);
   }

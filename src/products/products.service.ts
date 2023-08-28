@@ -46,6 +46,10 @@ export class ProductsService {
     }
   }
 
+  async getById(id: string) {
+    return await this.productModel.findById(id);
+  }
+
   async addProduct(product: IProduct) {
     const newProduct = new this.productModel(product);
 
