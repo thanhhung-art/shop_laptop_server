@@ -1,5 +1,4 @@
 import {
-  IsArray,
   IsNotEmpty,
   IsNumber,
   IsString,
@@ -57,9 +56,9 @@ export class ProductDto {
   @IsNotEmpty()
   img: string;
 
-  @IsArray()
+  @IsString()
   @IsNotEmpty()
-  color: string[];
+  color: string;
 
   @IsString()
   @IsNotEmpty()

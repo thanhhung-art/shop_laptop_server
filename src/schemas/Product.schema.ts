@@ -24,18 +24,16 @@ export class Product {
   categories: string;
 
   @Prop({
-    type: [
-      {
-        ram: String,
-        hardDisk: String,
-        cpu: String,
-        gpu: String,
-        screen: String,
-        battery: String,
-        os: String,
-        camera: String,
-      },
-    ],
+    type: {
+      ram: String,
+      hardDisk: String,
+      cpu: String,
+      gpu: String,
+      screen: String,
+      battery: String,
+      os: String,
+      camera: String,
+    },
   })
   configure: {
     ram: string;
@@ -49,7 +47,7 @@ export class Product {
   };
 
   @Prop()
-  color: string[];
+  color: string;
 
   @Prop()
   instock: string;

@@ -13,7 +13,7 @@ export interface IProduct {
   img: string;
   categories: string;
   rating?: number;
-  color: string[];
+  color: string;
   brand: string;
   weight: string;
 
