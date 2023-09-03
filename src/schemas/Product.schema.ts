@@ -54,6 +54,9 @@ export class Product {
 
   @Prop()
   rating: number;
+
+  @Prop()
+  weight: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

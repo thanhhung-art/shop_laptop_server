@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Param,
   Post,
+  Put,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductDto } from './dto/product.dto';
@@ -35,5 +36,12 @@ export class ProductsController {
     const result = await this.productsService.getById(id);
 
     return dataReturn('get product success', result);
+  }
+
+  @Put(':id')
+  async editProduct(@Param('id') id: string, @Body() productData: ProductDto) {
+    const result = await this.productsService.editProduct(id, productData);
+
+    return dataReturn('update success', result);
   }
 }

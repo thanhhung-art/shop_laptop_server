@@ -67,4 +67,10 @@ export class ProductsService {
 
     return savedProduct;
   }
+
+  async editProduct(id: string, data: IProduct) {
+    const productUpdated = await this.productModel.findByIdAndUpdate(id, data);
+
+    return productUpdated;
+  }
 }

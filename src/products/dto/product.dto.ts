@@ -1,47 +1,48 @@
 import {
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
 
 class Configure {
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   ram: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   hardDisk: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   cpu: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   screen: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   battery: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   os: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   camera: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   gpu: string;
 }
 
 export class ProductDto {
-  @IsNotEmpty()
   @IsString()
+  @IsOptional()
   brand: string;
 
   @IsString()
@@ -49,7 +50,7 @@ export class ProductDto {
   name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   description: string;
 
   @IsString()
@@ -57,7 +58,7 @@ export class ProductDto {
   img: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   color: string;
 
   @IsString()
@@ -69,11 +70,11 @@ export class ProductDto {
   price: number;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   weight: string;
 
-  @IsNotEmpty()
   @IsString()
+  @IsOptional()
   categories: string;
 
   @ValidateNested()

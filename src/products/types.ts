@@ -8,23 +8,23 @@ export interface IFilterProducts {
 export interface IProduct {
   name: string;
   price: number;
-  description: string;
+  description?: string;
   instock: string;
   img: string;
-  categories: string;
+  categories?: string;
   rating?: number;
-  color: string;
-  brand: string;
-  weight: string;
+  color?: string;
+  brand?: string;
+  weight?: string;
 
   configure: {
-    ram: string;
-    hardDisk: string;
-    cpu: string;
-    screen: string;
-    camera: string;
-    battery: string;
-    os: string;
-    gpu: string;
+    ram?: string;
+    hardDisk?: string;
+    cpu?: string;
+    screen?: string;
+    camera?: string;
+    battery?: string;
+    os?: string;
+    gpu?: string;
   };
 }
