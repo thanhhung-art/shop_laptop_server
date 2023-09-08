@@ -43,7 +43,7 @@ export class AuthService {
 
     const decryptPass = AES.decrypt(
       user.password,
-      process.env.PASS_SECREC,
+      process.env.PASS_SECRET,
     ).toString(enc.Utf8);
 
     if (decryptPass !== password) {
