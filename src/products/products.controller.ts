@@ -28,7 +28,7 @@ export class ProductsController {
   async getProducts() {
     const result = await this.productsService.getAll({ page: 1 });
 
-    return dataReturn('get product success', result);
+    return dataReturn('get products success', result);
   }
 
   @Get(':id')
