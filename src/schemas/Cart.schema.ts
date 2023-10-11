@@ -20,6 +20,9 @@ export class Cart {
     productId: string;
     quantity: number;
   }[];
+
+  @Prop({ required: true })
+  totalPrice: number;
 }
 
 export const CartSchema = SchemaFactory.createForClass(Cart);

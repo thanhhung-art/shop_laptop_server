@@ -24,6 +24,9 @@ export class User {
   address: string;
 
   @Prop()
+  address2: string;
+
+  @Prop()
   phone: string;
 }
 
