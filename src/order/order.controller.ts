@@ -1,18 +1,23 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { OrderDto } from './dto/order.dto';
+import { dataReturn } from 'src/utils/dataReturn';
 
-@Controller('order')
+@Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Get()
-  getAll() {
-    return this.orderService.getAll();
+  async getAll() {
+    const result = await this.orderService.getAll();
+    return dataReturn('get all order success', result);
   }
 
   @Post()
   createOrder(@Body() order: OrderDto) {
-    return this.orderService.createOrder(order);
+    return dataReturn(
+      'create order success',
+      this.orderService.createOrder(order),
+    );
   }
 }

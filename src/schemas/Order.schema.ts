@@ -5,10 +5,13 @@ export type OrderDocument = HydratedDocument<Order>;
 
 @Schema({ timestamps: true })
 export class Order {
-  @Prop({ required: true })
+  @Prop()
   userId: string;
 
   @Prop()
+  username: string;
+
+  @Prop({ required: true })
   phone: string;
 
   @Prop({

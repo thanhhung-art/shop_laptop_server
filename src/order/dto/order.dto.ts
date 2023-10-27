@@ -17,7 +17,6 @@ class Products {
 
 export class OrderDto {
   @IsString()
-  @IsNotEmpty()
   userId: string;
 
   @IsString()
@@ -25,7 +24,11 @@ export class OrderDto {
   phone: string;
 
   @IsString()
+  @IsNotEmpty()
   username: string;
+
+  @IsString()
+  email: string;
 
   @ValidateNested()
   products: Products[];
@@ -34,7 +37,9 @@ export class OrderDto {
   @IsString()
   address: string;
 
-  @IsNotEmpty()
+  @IsString()
+  address2: string;
+
   @IsString()
   status: string;
 
@@ -42,7 +47,6 @@ export class OrderDto {
   @IsString()
   payment: string;
 
-  @IsNotEmpty()
   @IsString()
   note: string;
 
