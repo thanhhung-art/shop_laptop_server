@@ -18,4 +18,9 @@ export class OrderService {
 
     return await newOrder.save();
   }
+
+  async updateOrder(id: string, data) {
+    const orderUpdated = await this.orderModel.findByIdAndUpdate(id, data);
+    return orderUpdated;
+  }
 }
