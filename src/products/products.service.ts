@@ -13,12 +13,18 @@ export class ProductsService {
   ) {}
 
   async getAll({ latest, brand, featured, page }: IFilterProducts) {
+    const allProduct = (await this.productModel.find()).length;
     let products = [] as Product[];
-    if (page) {
-      products = await this.productModel.find();
-      //.limit(9)
-      //.skip(page * 9);
-      return products;
+    if (page !== undefined) {
+      products = await this.productModel
+        .find()
+        .limit(9)
+        .skip(page * 9);
+      return {
+        products,
+        nextPage: page + 1,
+        lastPage: Math.ceil(allProduct / 9),
+      };
     } else if (latest) {
       products = await this.productModel
         .find()
