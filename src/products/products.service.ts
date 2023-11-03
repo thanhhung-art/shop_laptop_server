@@ -18,12 +18,12 @@ export class ProductsService {
     if (page !== undefined) {
       products = await this.productModel
         .find()
-        .limit(9)
-        .skip(page * 9);
+        .limit(12)
+        .skip(page * 12);
       return {
         products,
         nextPage: page + 1,
-        lastPage: Math.ceil(allProduct / 9),
+        lastPage: Math.ceil(allProduct / 12),
       };
     } else if (latest) {
       products = await this.productModel
