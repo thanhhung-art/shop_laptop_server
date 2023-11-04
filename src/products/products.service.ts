@@ -52,6 +52,19 @@ export class ProductsService {
     }
   }
 
+  async search(keyword: string) {
+    if (!keyword) return [];
+    const regex = new RegExp(keyword, 'i');
+    const producstFound = await this.productModel.find({
+      name: { $regex: regex },
+    });
+
+    return producstFound.map((p) => {
+      const { _id, name, img } = p;
+      return { _id, name, img };
+    });
+  }
+
   async getById(id: string) {
     return await this.productModel.findById(id);
   }

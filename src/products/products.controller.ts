@@ -45,6 +45,13 @@ export class ProductsController {
     return dataReturn('get products success', result);
   }
 
+  @Get('/search')
+  async searchProducts(@Query('keyword') keyword: string) {
+    const result = await this.productsService.search(keyword);
+
+    return dataReturn('products found', result);
+  }
+
   @Get(':id')
   async getProduct(@Param('id') id: string) {
     const result = await this.productsService.getById(id);
