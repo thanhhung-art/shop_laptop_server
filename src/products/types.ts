@@ -3,6 +3,7 @@ export interface IFilterProducts {
   brand?: string;
   featured?: string;
   page?: number;
+  query?: 'latest' | 'brand' | 'featured' | number;
 }
 
 export interface IProduct {

@@ -9,7 +9,15 @@ export class OrderService {
     @InjectModel(Order.name) private readonly orderModel: Model<Order>,
   ) {}
 
-  async getAll() {
+  async getAll(query: string) {
+    if (query === 'latest') {
+      return await this.orderModel
+        .find()
+        .sort({
+          createdAt: -1,
+        })
+        .limit(6);
+    }
     return await this.orderModel.find();
   }
 

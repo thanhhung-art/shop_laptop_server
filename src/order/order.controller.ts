@@ -1,16 +1,17 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { OrderDto } from './dto/order.dto';
 import { dataReturn } from 'src/utils/dataReturn';
 import { OrderUpdateDto } from './dto/orderUpdate.dto';
+import { GetOrdersPipe } from './pipes/getOrders.pipe';
 
 @Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Get()
-  async getAll() {
-    const result = await this.orderService.getAll();
+  async getAll(@Query('query', GetOrdersPipe) query: string) {
+    const result = await this.orderService.getAll(query);
     return dataReturn('get all order success', result);
   }
 
