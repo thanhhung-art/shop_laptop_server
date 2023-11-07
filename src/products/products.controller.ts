@@ -5,7 +5,6 @@ import {
   HttpException,
   HttpStatus,
   Param,
-  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -14,6 +13,7 @@ import { ProductsService } from './products.service';
 import { ProductDto } from './dto/product.dto';
 import { dataReturn } from 'src/utils/dataReturn';
 import { Product } from 'src/schemas/Product.schema';
+import { GetProductsPipe } from './pipes/getProducts.pipe';
 
 @Controller('products')
 export class ProductsController {
@@ -29,18 +29,13 @@ export class ProductsController {
 
   @Get()
   async getProducts(
-    @Query('page', ParseIntPipe) page: number,
-    @Query('latest') latest: string,
-    @Query('brand') brand: string,
-    @Query('featured') featured: string,
+    @Query('query', GetProductsPipe)
+    query: 'latest' | 'brand' | 'featured' | number,
   ) {
-    let result:
+    const result:
       | Product[]
-      | { products: Product[]; nextPage: number; lastPage: number };
-    if (latest) result = await this.productsService.getAll({ latest });
-    else if (brand) result = await this.productsService.getAll({ brand });
-    else if (featured) result = await this.productsService.getAll({ featured });
-    else result = await this.productsService.getAll({ page });
+      | { products: Product[]; nextPage: number; lastPage: number } =
+      await this.productsService.getAll({ query });
 
     return dataReturn('get products success', result);
   }

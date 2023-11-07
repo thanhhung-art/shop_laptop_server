@@ -12,20 +12,20 @@ export class ProductsService {
     private readonly productModel: Model<ProductDocument>,
   ) {}
 
-  async getAll({ latest, brand, featured, page }: IFilterProducts) {
+  async getAll({ query }: IFilterProducts) {
     const allProduct = (await this.productModel.find()).length;
     let products = [] as Product[];
-    if (page !== undefined) {
+    if (typeof query === 'number') {
       products = await this.productModel
         .find()
         .limit(12)
-        .skip(page * 12);
+        .skip(query * 12);
       return {
         products,
-        nextPage: page + 1,
+        nextPage: query + 1,
         lastPage: Math.ceil(allProduct / 12),
       };
-    } else if (latest) {
+    } else if (query === 'latest') {
       products = await this.productModel
         .find()
         .sort({
@@ -33,12 +33,12 @@ export class ProductsService {
         })
         .limit(6);
       return products;
-    } else if (brand) {
+    } else if (query === 'brand') {
       products = await this.productModel.find({
-        brand: brand,
+        brand: query,
       });
       return products;
-    } else if (featured) {
+    } else if (query === 'featured') {
       products = await this.productModel
         .find()
         .sort({
