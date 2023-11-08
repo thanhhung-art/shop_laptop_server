@@ -10,7 +10,7 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Get()
-  async getAll(@Query('query', GetOrdersPipe) query: string) {
+  async getAll(@Query('query') query: 'latest') {
     const result = await this.orderService.getAll(query);
     return dataReturn('get all order success', result);
   }
