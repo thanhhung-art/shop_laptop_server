@@ -29,17 +29,13 @@ export class UserService {
   }
 
   async updateById(id: string, dataToUpdate: IDataToUpdate) {
-    const prepareUpdate = {} as IDataToUpdate;
+    const prepareToUpdate = {} as IDataToUpdate;
 
     for (const key in dataToUpdate) {
-      if (dataToUpdate[key]) prepareUpdate[key] = dataToUpdate[key];
+      if (dataToUpdate[key]) prepareToUpdate[key] = dataToUpdate[key];
     }
 
-    const user = await this.userModel.findByIdAndUpdate(
-      id,
-      { $set: prepareUpdate },
-      { new: true },
-    );
+    const user = await this.userModel.findByIdAndUpdate(id, prepareToUpdate);
 
     return user;
   }
@@ -51,7 +47,7 @@ export class UserService {
   }
 
   async getUserAmount() {
-    const users = await this.userModel.find();
-    return users.length;
+    const users = await this.userModel.countDocuments();
+    return users;
   }
 }
