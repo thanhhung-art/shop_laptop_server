@@ -1,9 +1,18 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { OrderService } from './order.service';
 import { OrderDto } from './dto/order.dto';
 import { dataReturn } from 'src/utils/dataReturn';
 import { OrderUpdateDto } from './dto/orderUpdate.dto';
-import { GetOrdersPipe } from './pipes/getOrders.pipe';
+import { deleteOrdersDto } from './dto/deleteOrder.dto';
 
 @Controller('orders')
 export class OrderController {
@@ -25,5 +34,22 @@ export class OrderController {
   async updateOrder(@Param('id') id: string, @Body() order: OrderUpdateDto) {
     const result = await this.orderService.updateOrder(id, order);
     return dataReturn('update order suscess', result);
+  }
+
+  @Get(':id')
+  async getAllOrderOfUser(
+    @Param('id') id: string,
+    @Query('phone') phone: string,
+    @Query('email') email: string,
+  ) {
+    const result = await this.orderService.getOrdersOfUser(id, phone, email);
+    return dataReturn('get all orders success', result);
+  }
+
+  @Delete()
+  async deleteOrders(@Body() orderDelete: deleteOrdersDto) {
+    const result = await this.orderService.deleteOrders(orderDelete.ids);
+
+    return dataReturn(result);
   }
 }

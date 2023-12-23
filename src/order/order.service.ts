@@ -27,8 +27,29 @@ export class OrderService {
     return await newOrder.save();
   }
 
+  async getOrdersOfUser(userId: string, phone: string, email: string) {
+    const allOrders = await this.orderModel.find({
+      $or: [{ userId }, { phone }, { email }],
+    });
+    return allOrders;
+  }
+
   async updateOrder(id: string, data) {
     const orderUpdated = await this.orderModel.findByIdAndUpdate(id, data);
     return orderUpdated;
+  }
+
+  async deleteOrders(ids: string[]) {
+    if (ids.length > 0) {
+      if (ids.length > 1) {
+        const filter = { _id: { $in: ids } };
+        await this.orderModel.deleteMany(filter);
+        return 'delete orders success';
+      }
+
+      await this.orderModel.findByIdAndDelete(ids[0]);
+      return 'delete order success';
+    }
+    return 'no order to delete';
   }
 }
